@@ -127,6 +127,7 @@ public class RefereePageController extends HomePageController {
 
     public void createReport(ActionEvent actionEvent) throws IOException {
         //String matchesStr = refereeApplication.getAllMatches(userName);
+
         String matchesStr = ClientController.connectToServer("RefereeApplication", "getAllMatches", userName);
 
         List<String> matches = Arrays.asList(matchesStr.split(";"));
