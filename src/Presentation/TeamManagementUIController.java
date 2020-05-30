@@ -1,6 +1,6 @@
 package Presentation;
 
-import Service.TeamManagementApplication;
+//import Service.TeamManagementApplication;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -67,16 +67,16 @@ public class TeamManagementUIController { //implements Initializable {
 
     @FXML
     public void changeToActivateScene(ActionEvent event) throws IOException {
-        String approvedTeamsStr = tMApp.getMyApprovedTeams(userName);
-        //String approvedTeamsStr = ClientController.connectToServer("TeamManagementApplication", "getMyApprovedTeams", userName);
+        //String approvedTeamsStr = tMApp.getMyApprovedTeams(userName);
+        String approvedTeamsStr = ClientController.connectToServer("TeamManagementApplication", "getMyApprovedTeams", userName);
 
-        String tempPlayersStr = tMApp.getAllTeamRolesThatArentPlayerWithTeam();
-        //String tempPlayersStr = ClientController.connectToServer("TeamManagementApplication", "getAllTeamRolesThatArentPlayerWithTeam");
+        //String tempPlayersStr = tMApp.getAllTeamRolesThatArentPlayerWithTeam();
+        String tempPlayersStr = ClientController.connectToServer("TeamManagementApplication", "getAllTeamRolesThatArentPlayerWithTeam");
 
         List<String> tempPlayers = Arrays.asList(tempPlayersStr.split(";"));
 
-        String CoachesStr = tMApp.getAllTeamRolesThatArentCoachWithTeam();
-        //String CoachesStr = ClientController.connectToServer("TeamManagementApplication", "getAllTeamRolesThatArentCoachWithTeam");
+        //String CoachesStr = tMApp.getAllTeamRolesThatArentCoachWithTeam();
+        String CoachesStr = ClientController.connectToServer("TeamManagementApplication", "getAllTeamRolesThatArentCoachWithTeam");
 
         List<String> Coaches = Arrays.asList(CoachesStr.split(";"));
 
@@ -136,8 +136,8 @@ public class TeamManagementUIController { //implements Initializable {
         if (teamName == null || teamName.equals("")) {
             alertError("Please insert a team name.");
         } else {
-            String message = tMApp.requestNewTeam(userName, teamName);
-            //String message = ClientController.connectToServer("TeamManagementApplication", "requestNewTeam", userName, teamName);
+            //String message = tMApp.requestNewTeam(userName, teamName);
+            String message = ClientController.connectToServer("TeamManagementApplication", "requestNewTeam", userName, teamName);
 
 
             if (message == "team name not unique, already exist in system") {
@@ -151,10 +151,10 @@ public class TeamManagementUIController { //implements Initializable {
 
     @FXML
     public void activateScene() {
-        if (tMApp.getMyApprovedTeams(userName) != null && tMApp.getMyApprovedTeams(userName).length() != 0) {
-            //if(ClientController.connectToServer("TeamManagementApplication", "getMyApprovedTeams", userName) != null && ClientController.connectToServer("TeamManagementApplication", "getMyApprovedTeams", userName).length() != 0){
-            String approvedTeamsStr = tMApp.getMyApprovedTeams(userName);
-            //String approvedTeamsStr = ClientController.connectToServer("TeamManagementApplication", "getMyApprovedTeams", userName);
+        //if (tMApp.getMyApprovedTeams(userName) != null && tMApp.getMyApprovedTeams(userName).length() != 0) {
+        String approvedTeamsStr = ClientController.connectToServer("TeamManagementApplication", "getMyApprovedTeams", userName);
+        if(approvedTeamsStr != null && approvedTeamsStr.length() != 0){
+            //String approvedTeamsStr = tMApp.getMyApprovedTeams(userName);
 
             List<String> approvedTeams = Arrays.asList(approvedTeamsStr.split(";"));
 
@@ -164,8 +164,8 @@ public class TeamManagementUIController { //implements Initializable {
             }
         }
 
-        String tempPlayersStr = tMApp.getAllTeamRolesThatArentPlayerWithTeam();
-        //String tempPlayersStr = ClientController.connectToServer("TeamManagementApplication", "getAllTeamRolesThatArentPlayerWithTeam");
+        //String tempPlayersStr = tMApp.getAllTeamRolesThatArentPlayerWithTeam();
+        String tempPlayersStr = ClientController.connectToServer("TeamManagementApplication", "getAllTeamRolesThatArentPlayerWithTeam");
 
         List<String> tempPlayers = Arrays.asList(tempPlayersStr.split(";"));
 
@@ -174,8 +174,8 @@ public class TeamManagementUIController { //implements Initializable {
         playersListView.setItems(players);
         playersListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        String CoachesStr = tMApp.getAllTeamRolesThatArentCoachWithTeam();
-        //String tempPlayersStr = ClientController.connectToServer("TeamManagementApplication", "getAllTeamRolesThatArentCoachWithTeam");
+        //String CoachesStr = tMApp.getAllTeamRolesThatArentCoachWithTeam();
+        String CoachesStr = ClientController.connectToServer("TeamManagementApplication", "getAllTeamRolesThatArentCoachWithTeam");
 
         List<String> Coaches = Arrays.asList(CoachesStr.split(";"));
 
@@ -214,8 +214,8 @@ public class TeamManagementUIController { //implements Initializable {
         } else if (players == null || players.size() < 11) {
             alertError("Please choose players.");
         } else {
-            String message = tMApp.makeTeamActive(userName, teamName, playersStr, coachUserName, field);
-            //String message = ClientController.connectToServer("TeamManagementApplication", "makeTeamActive", userName, teamName, playersStr, coachUserName, field);
+            //String message = tMApp.makeTeamActive(userName, teamName, playersStr, coachUserName, field);
+            String message = ClientController.connectToServer("TeamManagementApplication", "makeTeamActive", userName, teamName, playersStr, coachUserName, field);
 
             if (message.equals("this team is not approved by RFA")) {
                 alertError("This team was not approved by the RFA.");

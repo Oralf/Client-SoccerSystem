@@ -1,8 +1,8 @@
 package Presentation;
 
-import Service.RefereeApplication;
-import Service.RfaApplication;
-import Service.SystemOperationsApplication;
+//import Service.RefereeApplication;
+//import Service.RfaApplication;
+//import Service.SystemOperationsApplication;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +23,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class RfaNotificationController {
-    private RfaApplication rfaApplication = new RfaApplication();
+    //private RfaApplication rfaApplication = new RfaApplication();
     private List<String> RfaRequestList=new LinkedList<>();
     public String userName ;
     private String role= "Rfa";
@@ -41,8 +41,8 @@ public class RfaNotificationController {
     private void initComboBox() {
         RfaRequestList.clear();
         RfaRequestList.add("All my unread alerts about matches");
-        String RfaAlertsAsRfa = rfaApplication.getTeamRequests(userName);
-        //String allRefereeAlertsStr = ClientController.connectToServer("RfaApplication", "getTeamRequests", userName);
+        //String RfaAlertsAsRfa = rfaApplication.getTeamRequests(userName);
+        String RfaAlertsAsRfa = ClientController.connectToServer("RfaApplication", "getTeamRequests", userName);
 
         List<String> allRfaRequests = Arrays.asList(RfaAlertsAsRfa.split(";"));
         for (String str:allRfaRequests) {
@@ -71,8 +71,8 @@ public class RfaNotificationController {
                 chooseFile.show();
             }
             else{
-                String ans= this.rfaApplication.answerRequest(userName,teamName,"false");
-                //String ans = ClientController.connectToServer("RfaApplication", "answerRequest", userName, teamName, "false");
+                //String ans= this.rfaApplication.answerRequest(userName,teamName,"false");
+                String ans = ClientController.connectToServer("RfaApplication", "answerRequest", userName, teamName, "false");
 
                 if(ans.contains("error")){
                     Alert chooseFile = new Alert(Alert.AlertType.ERROR);
@@ -106,8 +106,8 @@ public class RfaNotificationController {
                 chooseFile.show();
             }
             else{
-                String ans= this.rfaApplication.answerRequest(userName,teamName,"true");
-                //String ans = ClientController.connectToServer("RfaApplication", "answerRequest", userName, teamName, "true");
+                //String ans= this.rfaApplication.answerRequest(userName,teamName,"true");
+                String ans = ClientController.connectToServer("RfaApplication", "answerRequest", userName, teamName, "true");
 
                 if(ans.contains("error")){
                     Alert chooseFile = new Alert(Alert.AlertType.ERROR);

@@ -1,6 +1,6 @@
 package Presentation;
 
-import Service.UserApplication;
+//import Service.UserApplication;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,27 +32,29 @@ public class LoginController{
     }
     @FXML
     public void validationHandling(MouseEvent mouseEvent) {
-        UserApplication uc=new UserApplication();
+        //UserApplication uc=new UserApplication();
 
         try {
             if(txt_userName.getText().contains(";")||txt_password.getText().contains(";")){
                 throw new Exception();
             }
-            String userRole= uc.login(txt_userName.getText(),txt_password.getText());
-            //String userRole = ClientController.connectToServer("UserApplication", "login", txt_userName.getText(),txt_password.getText());
+            //String userRole= uc.login(txt_userName.getText(),txt_password.getText());
+            String userRole = ClientController.connectToServer("UserApplication", "login", txt_userName.getText(),txt_password.getText());
 
             lbl_error.setText("");
             /**notification*/
             if(userRole.equals("Referee")||userRole.equals("RFA")){
                 boolean notFan=false;
                 String message="";
-                if(uc.haveUnreadNotifications(txt_userName.getText())){
+                //if(uc.haveUnreadNotifications(txt_userName.getText())){
+                if(ClientController.connectToServer("UserApplication", "haveUnreadNotifications", txt_userName.getText()).equals("true")){
                     message="You have unread notifications as fan";
                     notFan=true;
                 }
 //                if(userRole.equals("Referee")) {
-                    if (uc.haveUnreadNotifications(userRole, txt_userName.getText())) {
-                        if (notFan) {
+                    //if (uc.haveUnreadNotifications(userRole, txt_userName.getText())) {
+                    if(ClientController.connectToServer("UserApplication", "haveUnreadNotifications", userRole, txt_userName.getText()).equals("true")){
+                            if (notFan) {
                             message = message + ", and as" + userRole;
                         } else {
                             message = "You have unread notifications as " + userRole;
@@ -83,9 +85,8 @@ public class LoginController{
 
 
             else {
-                if (uc.haveUnreadNotifications(txt_userName.getText())) {
-                    //TODO change function so returns string instead of boolean!!!
-                    //if (ClientController.connectToServer("UserApplication", "haveUnreadNotifications", txt_userName.getText()))
+                //if (uc.haveUnreadNotifications(txt_userName.getText())) {
+                if (ClientController.connectToServer("UserApplication", "haveUnreadNotifications", txt_userName.getText()).equals("true")){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText("");
                     DialogPane dialogPane = alert.getDialogPane();
@@ -153,7 +154,7 @@ public class LoginController{
     public void signUpMouseClickHandling(MouseEvent mouseEvent) throws IOException {
         Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)mouseEvent.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
-        Scene scene = new Scene(root, 700, 400);
+        Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
         stageTheEventSourceNodeBelongs.setScene(scene);
     }

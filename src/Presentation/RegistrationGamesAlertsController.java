@@ -1,7 +1,7 @@
 package Presentation;
 
-import Service.FanApplication;
-import Service.SystemOperationsApplication;
+//import Service.FanApplication;
+//import Service.SystemOperationsApplication;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,8 +34,8 @@ public class RegistrationGamesAlertsController {
     private ComboBox<String> allMatchesInSystemCombo;
     @FXML
     private Button followMatchButton;
-    private FanApplication fanApplication = new FanApplication();
-    private SystemOperationsApplication syOpApp =new SystemOperationsApplication();
+    //private FanApplication fanApplication = new FanApplication();
+    //private SystemOperationsApplication syOpApp =new SystemOperationsApplication();
     private String userName; // is teamRole
     private String role;
 
@@ -55,8 +55,8 @@ public class RegistrationGamesAlertsController {
         //for comboBox of fan matches
         fanMatchsList.clear();
         fanMatchsList.add("matches you are following and receive alerts");
-        String allFanMatchsStr = fanApplication.getUserMachesFollows(userName);
-        //String allFanMatchsStr = ClientController.connectToServer("FanApplication", "getUserMachesFollows", userName);
+        //String allFanMatchsStr = fanApplication.getUserMachesFollows(userName);
+        String allFanMatchsStr = ClientController.connectToServer("FanApplication", "getUserMachesFollows", userName);
 
         List<String> allFanMatchs = Arrays.asList(allFanMatchsStr.split(";"));
 
@@ -71,8 +71,8 @@ public class RegistrationGamesAlertsController {
         //for comboBox of system matches
         allMatchsList.clear();
         allMatchsList.add("select a match you want to follow");
-        String allMatchesInSystemStr = syOpApp.getAllMatchsInSytem();
-        //String allMatchesInSystemStr = ClientController.connectToServer("SystemOperationsApplication", "getAllMatchsInSytem");
+        //String allMatchesInSystemStr = syOpApp.getAllMatchsInSytem();
+        String allMatchesInSystemStr = ClientController.connectToServer("SystemOperationsApplication", "getAllMatchsInSytem");
 
         List<String> allMatchesInSystem = Arrays.asList(allMatchesInSystemStr.split(";"));
 
@@ -138,8 +138,8 @@ public class RegistrationGamesAlertsController {
             chooseFile.show();
         }
         else { // add match to fan matches follow
-            String massage= fanApplication.addMatchToFanMatchesFollow(userName,matchToFollow);
-            //String massage = ClientController.connectToServer("FanApplication", "addMatchToFanMatchesFollow", userName, matchToFollow);
+            //String massage= fanApplication.addMatchToFanMatchesFollow(userName,matchToFollow);
+            String massage = ClientController.connectToServer("FanApplication", "addMatchToFanMatchesFollow", userName, matchToFollow);
 
             if (massage.equals("ok")){
                 Alert chooseFile = new Alert(Alert.AlertType.INFORMATION);
