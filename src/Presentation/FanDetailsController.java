@@ -150,6 +150,7 @@ public class FanDetailsController { //implements Initializable
         updateEmailField.setText(currEmailLabel.getText());
 
         updateMyDetailsButton.setVisible(false);
+
     }
 
     /**
