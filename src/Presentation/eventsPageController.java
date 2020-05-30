@@ -307,6 +307,7 @@ public class eventsPageController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage.fxml"));
         Parent calcRoot = loader.load();
         HomePageController controller = loader.getController();
+        controller.initHomePage(userName,role);
         controller.closeHandling(mouseEvent);
     }
 

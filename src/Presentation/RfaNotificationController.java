@@ -35,12 +35,13 @@ public class RfaNotificationController {
     public void initUser (String userName,String role) {
         this.userName=userName;
         this.role=role;
+        initComboBox();
     }
 
     @FXML
     private void initComboBox() {
         RfaRequestList.clear();
-        RfaRequestList.add("All my unread alerts about matches");
+        RfaRequestList.add("All my team requests");
         //String RfaAlertsAsRfa = rfaApplication.getTeamRequests(userName);
         String RfaAlertsAsRfa = ClientController.connectToServer("RfaApplication", "getTeamRequests", userName);
 
@@ -129,6 +130,7 @@ public class RfaNotificationController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage.fxml"));
         Parent calcRoot = loader.load();
         HomePageController controller = loader.getController();
+        controller.initHomePage(userName,role);
         controller.closeHandling(mouseEvent);
     }
 
