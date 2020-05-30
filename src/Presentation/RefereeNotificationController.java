@@ -1,8 +1,6 @@
 package Presentation;
 
-import Service.FanApplication;
-import Service.RefereeApplication;
-import Service.SystemOperationsApplication;
+
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,7 +22,7 @@ import java.util.List;
 
 public class RefereeNotificationController {
 
-    private RefereeApplication refereeApplication = new RefereeApplication();
+    //private RefereeApplication refereeApplication = new RefereeApplication();
     private List<String> RefereeNotificationsList=new LinkedList<>();
     public String userName = "";
     private String role;
@@ -42,8 +40,8 @@ public class RefereeNotificationController {
     private void initComboBox() {
         RefereeNotificationsList.clear();
         RefereeNotificationsList.add("All my unread alerts about matches");
-        String RefereeAlertsAsReferee = refereeApplication.getRefereeUnreadNotifications(userName);
-        //String RefereeAlertsAsReferee = ClientController.connectToServer("refereeApplication", "getRefereeUnreadNotifications", userName);
+        //String RefereeAlertsAsReferee = refereeApplication.getRefereeUnreadNotifications(userName);
+        String RefereeAlertsAsReferee = ClientController.connectToServer("refereeApplication", "getRefereeUnreadNotifications", userName);
 
         List<String> allRefereeAlerts = Arrays.asList(RefereeAlertsAsReferee.split(";"));
         for (String str:allRefereeAlerts) {
@@ -64,8 +62,8 @@ public class RefereeNotificationController {
             chooseFile.show();
         }
         else{
-            String answer = this.refereeApplication.markNotificationAsRead(notification, this.userName);
-            //String answer = ClientController.connectToServer("refereeApplication", "markNotificationAsRead", userName);
+            //String answer = this.refereeApplication.markNotificationAsRead(notification, this.userName);
+            String answer = ClientController.connectToServer("refereeApplication", "markNotificationAsRead", userName);
 
             if(answer.equals("ok")) {
                 initComboBox();

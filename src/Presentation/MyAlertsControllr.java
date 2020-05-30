@@ -1,7 +1,5 @@
 package Presentation;
 
-import Service.FanApplication;
-import Service.SystemOperationsApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,8 +19,8 @@ public class MyAlertsControllr {
 
     @FXML
     private ComboBox<String > myNotifictionsCombo;
-    private FanApplication fanApplication = new FanApplication();
-    private SystemOperationsApplication syOpApp =new SystemOperationsApplication();
+    //private FanApplication fanApplication = new FanApplication();
+   // private SystemOperationsApplication syOpApp =new SystemOperationsApplication();
     private List<String> fanNotificationsList=new LinkedList<>();
     private String userName; // is teamRole
     private String role;
@@ -39,8 +37,8 @@ public class MyAlertsControllr {
     public void updateNotificationsComoBox(){
         fanNotificationsList.clear();
         fanNotificationsList.add("all my alerts about matches");
-        String allFanAllertsStr = fanApplication.getFanNotifications(userName);
-        //String allFanAllertsStr = ClientController.connectToServer("FanApplication", "getFanNotifications", userName);
+        //String allFanAllertsStr = fanApplication.getFanNotifications(userName);
+        String allFanAllertsStr = ClientController.connectToServer("FanApplication", "getFanNotifications", userName);
 
         List<String> allFanAllerts = Arrays.asList(allFanAllertsStr.split(";"));
         for (String str:allFanAllerts) {

@@ -1,7 +1,6 @@
 package Presentation;
 
-import Service.RfaApplication;
-import Service.SystemOperationsApplication;
+
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,18 +32,16 @@ public class DefinePolicyController {
     public javafx.scene.control.TextField idOfSeason;
     @FXML
     public javafx.scene.control.Button defineCalcPolicyBtn;
-    @FXML
-    private RfaApplication rfaApplication = new RfaApplication();
-    @FXML
-    private SystemOperationsApplication sysOpApp = new SystemOperationsApplication();
+    //private RfaApplication rfaApplication = new RfaApplication();
+   // private SystemOperationsApplication sysOpApp = new SystemOperationsApplication();
 
 
     private String userName;
 
     public void initialize() {
         //for comboBox of calculation policy
-        String allCalculationPoliciesStr = rfaApplication.getAllCalculationPoliciesString();
-        //String allCalculationPoliciesStr = ClientController.connectToServer("RfaApplication", "getAllCalculationPoliciesString");
+        //String allCalculationPoliciesStr = rfaApplication.getAllCalculationPoliciesString();
+        String allCalculationPoliciesStr = ClientController.connectToServer("RfaApplication", "getAllCalculationPoliciesString");
         List<String> allCalculationPolicies = Arrays.asList(allCalculationPoliciesStr.split(";"));
         List<String> list = new LinkedList<>();
         for (String str:allCalculationPolicies) {
@@ -58,8 +55,8 @@ public class DefinePolicyController {
 
 
         // for comboBox of scheduling policy
-        String allSchedulingPoliciesStr = rfaApplication.getAllschedulingString();
-        //String allSchedulingPoliciesStr = ClientController.connectToServer("RfaApplication", "getAllschedulingString");
+        //String allSchedulingPoliciesStr = rfaApplication.getAllschedulingString();
+        String allSchedulingPoliciesStr = ClientController.connectToServer("RfaApplication", "getAllschedulingString");
 
         List<String> allSchedulingPolicies = Arrays.asList(allSchedulingPoliciesStr.split(";"));
         List<String> listOfSched = new LinkedList<>();
@@ -91,8 +88,8 @@ public class DefinePolicyController {
 
             String calcPolicySelected = chooseCalcPolicyBtn.getSelectionModel().getSelectedItem().toString();
             String schedPolicySelected = chooseSchedPolicyBtn.getSelectionModel().getSelectedItem().toString();
-            String answer = this.rfaApplication.DefinePoliciesToSeason(seasonSelected, calcPolicySelected, schedPolicySelected, userName);
-            //String answer = ClientController.connectToServer("RfaApplication", "DefinePoliciesToSeason", seasonSelected, calcPolicySelected, schedPolicySelected, userName);
+            //String answer = this.rfaApplication.DefinePoliciesToSeason(seasonSelected, calcPolicySelected, schedPolicySelected, userName);
+            String answer = ClientController.connectToServer("RfaApplication", "DefinePoliciesToSeason", seasonSelected, calcPolicySelected, schedPolicySelected, userName);
             if(answer.equals("ok")){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText("Define policies was successful");
@@ -123,7 +120,6 @@ public class DefinePolicyController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RfaPage.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        //scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
         RfaPageController controller = loader.getController();
         controller.initUser(userName,"Rfa");
         stageTheEventSourceNodeBelongs.setScene(scene);
