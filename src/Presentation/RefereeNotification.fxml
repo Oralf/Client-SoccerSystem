@@ -50,7 +50,7 @@
                      <GridPane.margin>
                         <Insets left="30.0" />
                      </GridPane.margin></Button>
-                  <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#BackToReferee" text="Back" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                  <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#BackToReferee" text="back" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="5.0" top="5.0" />
                      </GridPane.margin>

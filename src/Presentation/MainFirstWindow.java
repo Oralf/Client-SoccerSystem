@@ -1,6 +1,5 @@
 package Presentation;
 
-
 import com.sun.javafx.css.StyleManager;
 import javafx.application.Application;
 import javafx.beans.property.IntegerProperty;
@@ -19,10 +18,8 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
-
 import java.awt.*;
 import java.util.Optional;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -53,8 +50,6 @@ public class MainFirstWindow extends Application {
     }
 
     public static void main(String[] args) throws Exception {
-
-
         launch(args);
     }
 }
