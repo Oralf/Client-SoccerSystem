@@ -13,12 +13,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.RfaNotificationController">
    <children>
-       <Label layoutX="677.0" layoutY="-3.0" onMouseClicked="#closeHandling" prefHeight="27.0" prefWidth="20.0" text="X" textAlignment="CENTER">
+       <Label layoutX="676.0" layoutY="3.0" onMouseClicked="#closeHandling" prefHeight="27.0" prefWidth="20.0" text="X" textAlignment="CENTER">
            <font>
                <Font size="24.0" />
            </font>
        </Label>
-      <BorderPane prefHeight="400.0" prefWidth="700.0">
+      <BorderPane layoutY="39.0" prefHeight="361.0" prefWidth="700.0">
          <center>
             <GridPane prefHeight="402.0" prefWidth="681.0" BorderPane.alignment="CENTER">
               <columnConstraints>
