@@ -51,9 +51,7 @@ public class TeamManagementUIController { //implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(fxml));
         Parent root = loader.load();
-        // Parent root = FXMLLoader.load(getClass().getResource("FanDetails.fxml"));
         Scene scene = new Scene(root);
-        //scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
         TeamManagementUIController tMUICont = loader.getController();
         tMUICont.initUser(userName,role);
 
