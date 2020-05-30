@@ -97,6 +97,9 @@ public class HomePageController {
             scheduler.setOnFailed(e -> System.out.println("failed to run"));
             scheduler.start();
         }
+        else if(connectionOK && scheduler !=null){
+            scheduler.restart();
+        }
 
     }
 

@@ -165,6 +165,9 @@ public class RfaPageController extends HomePageController {
             );
             scheduler.start();
         }
+        else if(connectionOK && scheduler !=null){
+            scheduler.restart();
+        }
     }
 
     public void RFADetailsEventClick(ActionEvent actionEvent) throws IOException {

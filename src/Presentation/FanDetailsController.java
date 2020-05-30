@@ -177,7 +177,7 @@ public class FanDetailsController { //implements Initializable
 //            // all good!!
         else {
             if(newPassward.equals("******")){
-                newPassward=null;
+                newPassward="null";
             }
             //String massage= fanApplication.setFanDetails(userName,newName,newPassward,newPhonNum,newEmail);
             String massage = ClientController.connectToServer("FanApplication", "setFanDetails", userName,newName,newPassward,newPhonNum,newEmail);
