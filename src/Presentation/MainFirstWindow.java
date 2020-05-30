@@ -44,7 +44,7 @@ public class MainFirstWindow extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         scene = new Scene(root, 700, 400);
-        scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
+        //scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }
