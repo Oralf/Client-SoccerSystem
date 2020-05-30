@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
+import javax.xml.ws.FaultAction;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -35,6 +36,10 @@ public class FanDetailsController { //implements Initializable
     @FXML
     private Label currDateOfBirthLable; //V
     @FXML
+    private Label currQualificationLable;
+    @FXML
+    private Label idQualification;
+    @FXML
     private TextField updateNameFeild; // V
     @FXML
     private Button UpdateButton; //V
@@ -52,7 +57,7 @@ public class FanDetailsController { //implements Initializable
 
 
     //private FanApplication fanApplication = new FanApplication();
-  //  private SystemOperationsApplication syOpApp =new SystemOperationsApplication();
+    //private SystemOperationsApplication syOpApp =new SystemOperationsApplication();
     private String userName; // userName; set!!!!!!!!!!!!!!!!!!!!!!!!
     private String role;
 
@@ -90,8 +95,22 @@ public class FanDetailsController { //implements Initializable
     private void showDetails() {
         //String fanDetailsStr = syOpApp.getPrivateDetails(userName);
         String fanDetailsStr = ClientController.connectToServer("SystemOperationsApplication", "getPrivateDetails", userName);
-
         List<String> fanDetails = Arrays.asList(fanDetailsStr.split(";"));
+
+        //check if Referee
+        if(role.equals("Referee")){
+            //show details about referee
+            currQualificationLable.setVisible(true);
+            idQualification.setVisible(true);
+            String refereeQualification = ClientController.connectToServer("RefereeApplication", "getQualificationOfReferee", userName);
+            if(! refereeQualification.contains("Error")){
+                currQualificationLable.setText(refereeQualification);
+            }
+            else{
+                currQualificationLable.setText("null");
+            }
+        }
+
         //list : name, Password, PhoneNumber, Email, DateOfBirth
         currNameLabel.setText(fanDetails.get(0));
         //currPasswardLable.setText(fanDetails.get(1));

@@ -63,7 +63,7 @@ public class RefereeNotificationController {
         }
         else{
             //String answer = this.refereeApplication.markNotificationAsRead(notification, this.userName);
-            String answer = ClientController.connectToServer("RefereeApplication", "markNotificationAsRead", userName);
+            String answer = ClientController.connectToServer("RefereeApplication", "markNotificationAsRead", notification, userName);
 
             if(answer.equals("ok")) {
                 initComboBox();
