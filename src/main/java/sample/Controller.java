@@ -20,37 +20,33 @@ public class Controller {
     public void tryfunction(MouseEvent mouseEvent){
         String output = null;
         String output2 = null;
+
+        output=connectToServer("Hello","func","id123","oralf");
+        //    ClientConfig config = new DefaultClientConfig();
+        //    Client client = Client.create(config);
+        //WebResource webResource = client.resource("http://localhost:8080/ServerTry_war_exploded/rest/Hello");
+        //WebResource service = client.resource(UriBuilder.fromUri("http://132.72.65.77:8080/ServerTry_war_exploded/rest/Hello/func/changed").build());
+        //WebResource service = client.resource(UriBuilder.fromUri("http://localhost:8080/ServerTry_war_exploded/rest/Hello/func/31232/orald").build());
+
+      // output=webResource.accept(MediaType.TEXT_PLAIN).get(ClientResponse.class).getEntity(String.class);
+        System.out.println(output);
+
+        tryButton.setText(output+"");
+    }
+
+    private String connectToServer(String appName, String funcName, String... parameters){
+        String ans="";
         ClientConfig config = new DefaultClientConfig();
         Client client = Client.create(config);
-        //WebResource webResource = client.resource("http://localhost:8080/ServerTry_war_exploded/rest/Hello");
-        WebResource service = client.resource(UriBuilder.fromUri("http://localhost:8080/ServerTry_war_exploded/rest/Hello").build());
-        output=service.accept(MediaType.TEXT_PLAIN).get(ClientResponse.class).toString();
-        System.out.println(output);
-        output2=service.accept(MediaType.TEXT_PLAIN).get(String.class);
-        System.out.println(output2);
-        //response
-        /*
-        try {
-         //   String value=retrievedText;
-            Client client = Client.create();
-            WebResource webResource = client.resource("http://localhost:8080/ServerTry_war_exploded/rest/Hello");
-            ClientResponse response = webResource.accept("text/html").get(ClientResponse.class);
-            if (response.getStatus() != 200) {
-                throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
-            }
-            output = response.getEntity(String.class);
-            if(output==null){
-                System.out.println("the output is null");
-            }
-            System.out.println(output.toString());
-            System.out.println("\n\n");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("ERROR");
+        WebResource service = client.resource(UriBuilder.fromUri("http://localhost:8080/ServerTry_war_exploded/rest").build());
+        service=service.path(appName).path(funcName);
+        //service.path(appName).path(funcName);
+        for (String param:parameters) {
+            service=service.path(param);
         }
-        */
-        //return output2;
-        tryButton.setText(output2);
+        ans=service.accept(MediaType.TEXT_PLAIN).get(ClientResponse.class).getEntity(String.class);
+        System.out.println(ans);
+        return ans;
     }
 
 }
