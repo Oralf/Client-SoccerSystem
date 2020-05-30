@@ -77,7 +77,7 @@ public class LoginController{
                     alert.setHeaderText("");
                     DialogPane dialogPane = alert.getDialogPane();
                     alert.setContentText(message);
-                    dialogPane.getStylesheets().add(getClass().getResource("alert.css").toExternalForm());
+                    //dialogPane.getStylesheets().add(getClass().getResource("alert.css").toExternalForm());
                     dialogPane.getStyleClass().add("alert");
                     alert.show();
                 }
@@ -91,7 +91,7 @@ public class LoginController{
                     alert.setHeaderText("");
                     DialogPane dialogPane = alert.getDialogPane();
                     alert.setContentText("You have unread notifications!");
-                    dialogPane.getStylesheets().add(getClass().getResource("alert.css").toExternalForm());
+                    //dialogPane.getStylesheets().add(getClass().getResource("alert.css").toExternalForm());
                     dialogPane.getStyleClass().add("alert");
                     alert.show();
                 }
