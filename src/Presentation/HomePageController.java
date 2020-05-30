@@ -1,8 +1,6 @@
 package Presentation;
 
-import Domain.Users.User;
-import Service.FanApplication;
-import Service.UserApplication;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -36,8 +34,8 @@ public class HomePageController {
     private  Button tempButtonTeamRole;
 
 
-    private UserApplication userApplication= new UserApplication();
-    private FanApplication fanApplication = new FanApplication();
+    //private UserApplication userApplication= new UserApplication();
+   // private FanApplication fanApplication = new FanApplication();
     private String userName; // is teamRole
     private String role;
 
@@ -66,7 +64,7 @@ public class HomePageController {
             return;
         }
         if(connectionOK && scheduler==null) {
-            scheduler = new CheckNotificationsTask(userName, fanApplication);
+            scheduler = new CheckNotificationsTask(userName);
             scheduler.setPeriod(Duration.seconds(10));
             scheduler.setOnSucceeded(
                     e -> {
@@ -184,8 +182,8 @@ public class HomePageController {
     public void initHomePage(String userName,String role){ // String userName
         this.userName=userName;
         this.role=role;
-        String isTeamRole= fanApplication.fanIsTeamRole(userName);
-        //String ans = ClientController.connectToServer("FanApplication", "fanIsTeamRole", userName);
+        //String isTeamRole= fanApplication.fanIsTeamRole(userName);
+        String isTeamRole = ClientController.connectToServer("FanApplication", "fanIsTeamRole", userName);
         if(isTeamRole.equals("true")){
             buttonMyRoles.setVisible(true);
         }
@@ -210,8 +208,8 @@ public class HomePageController {
     @FXML
     public void onLogOut(ActionEvent actionEvent) throws IOException {
         scheduler.cancel();
-        String ans= userApplication.logout(userName);
-        //String ans = ClientController.connectToServer("UserApplication", "logout", userName);
+        //String ans= userApplication.logout(userName);
+        String ans = ClientController.connectToServer("UserApplication", "logout", userName);
         if(ans.equals("success")){
             FXMLLoader loader=new FXMLLoader();
             loader.setLocation(getClass().getResource("Login.fxml"));

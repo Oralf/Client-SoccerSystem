@@ -1,6 +1,6 @@
 package Presentation;
 
-import Service.RefereeApplication;
+
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,8 +46,8 @@ public class eventsPageController {
     @FXML
     public TextField idNumOfMinute;
 
-    @FXML
-    private RefereeApplication refereeApplication = new RefereeApplication();
+
+   // private RefereeApplication refereeApplication = new RefereeApplication();
 
     private String userName;
     private String match;
@@ -76,8 +76,8 @@ public class eventsPageController {
         String[] s1 = s[1].split(",");
         String id =s1[0];
 
-        String allPlayersStr = refereeApplication.displayPlayersAtMatch(userName, idOfMatch.getSelectionModel().getSelectedItem());
-        //String allPlayersStr = ClientController.connectToServer("RefereeApplication", "displayPlayersAtMatch", userName, idOfMatch.getSelectionModel().getSelectedItem());
+        //String allPlayersStr = refereeApplication.displayPlayersAtMatch(userName, idOfMatch.getSelectionModel().getSelectedItem());
+        String allPlayersStr = ClientController.connectToServer("RefereeApplication", "displayPlayersAtMatch", userName, idOfMatch.getSelectionModel().getSelectedItem());
 
         List<String> allPlayers = Arrays.asList(allPlayersStr.split(";"));
         List<String> list = new LinkedList<>();
@@ -166,8 +166,8 @@ public class eventsPageController {
             ErrorAlertForCreateEvent("You didn't pick a player");
         }else{
             String player = playerForGoal.getSelectionModel().getSelectedItem();
-            String answer = this.refereeApplication.createGoalEvent(userName,match,player);
-            //String answer = ClientController.connectToServer("RefereeApplication", "createGoalEvent", userName,match,player);
+            //String answer = this.refereeApplication.createGoalEvent(userName,match,player);
+            String answer = ClientController.connectToServer("RefereeApplication", "createGoalEvent", userName,match,player);
             if(! answer.equals("ok")){
                 ErrorAlertForCreateEvent(answer);
             }
@@ -184,8 +184,8 @@ public class eventsPageController {
             ErrorAlertForCreateEvent("You didn't pick a player");
         }else {
             String player = playerForInjury.getSelectionModel().getSelectedItem();
-            String answer = this.refereeApplication.createInjuryEvent(userName, match, player);
-            //String answer = ClientController.connectToServer("RefereeApplication", "createInjuryEvent", userName,match,player);
+            //String answer = this.refereeApplication.createInjuryEvent(userName, match, player);
+            String answer = ClientController.connectToServer("RefereeApplication", "createInjuryEvent", userName,match,player);
             if (!answer.equals("ok")) {
                 ErrorAlertForCreateEvent(answer);
             } else {
@@ -201,8 +201,8 @@ public class eventsPageController {
             ErrorAlertForCreateEvent("You didn't pick a player");
         }else {
             String player = playerForOffense.getSelectionModel().getSelectedItem();
-            String answer = this.refereeApplication.createOffenseEvent(userName, match, player);
-            //String answer = ClientController.connectToServer("RefereeApplication", "createOffenseEvent", userName,match,player);
+            //String answer = this.refereeApplication.createOffenseEvent(userName, match, player);
+            String answer = ClientController.connectToServer("RefereeApplication", "createOffenseEvent", userName,match,player);
             if (!answer.equals("ok")) {
                 ErrorAlertForCreateEvent(answer);
             } else {
@@ -218,8 +218,8 @@ public class eventsPageController {
             ErrorAlertForCreateEvent("You didn't pick a player");
         }else {
             String player = playerForOffSide.getSelectionModel().getSelectedItem();
-            String answer = this.refereeApplication.createOffSideEvent(userName, match, player);
-            //String answer = ClientController.connectToServer("RefereeApplication", "createOffSideEvent", userName,match,player);
+            //String answer = this.refereeApplication.createOffSideEvent(userName, match, player);
+            String answer = ClientController.connectToServer("RefereeApplication", "createOffSideEvent", userName,match,player);
             if (!answer.equals("ok")) {
                 ErrorAlertForCreateEvent(answer);
             } else {
@@ -236,8 +236,8 @@ public class eventsPageController {
         }else {
             String player1 = player1ForReplace.getSelectionModel().getSelectedItem();
             String player2 = player2ForReplace.getSelectionModel().getSelectedItem();
-            String answer = this.refereeApplication.createReplaceEvent(userName, match, player1, player2);
-            //String answer = ClientController.connectToServer("RefereeApplication", "createReplaceEvent", userName,match,player1,player2);
+            //String answer = this.refereeApplication.createReplaceEvent(userName, match, player1, player2);
+            String answer = ClientController.connectToServer("RefereeApplication", "createReplaceEvent", userName,match,player1,player2);
             if (!answer.equals("ok")) {
                 ErrorAlertForCreateEvent(answer);
             } else {
@@ -253,8 +253,8 @@ public class eventsPageController {
             ErrorAlertForCreateEvent("You didn't pick a player");
         }else {
             String player = playerForRedCard.getSelectionModel().getSelectedItem();
-            String answer = this.refereeApplication.createRedCardEvent(userName, match, player);
-            //String answer = ClientController.connectToServer("RefereeApplication", "createRedCardEvent", userName,match,player);
+            //String answer = this.refereeApplication.createRedCardEvent(userName, match, player);
+            String answer = ClientController.connectToServer("RefereeApplication", "createRedCardEvent", userName,match,player);
             if (!answer.equals("ok")) {
                 ErrorAlertForCreateEvent(answer);
             } else {
@@ -270,8 +270,8 @@ public class eventsPageController {
             ErrorAlertForCreateEvent("You didn't pick a player");
         }else {
             String player = playerForYellowCard.getSelectionModel().getSelectedItem();
-            String answer = this.refereeApplication.createYellowCardEvent(userName, match, player);
-            //String answer = ClientController.connectToServer("RefereeApplication", "createYellowCardEvent", userName,match,player);
+            //String answer = this.refereeApplication.createYellowCardEvent(userName, match, player);
+            String answer = ClientController.connectToServer("RefereeApplication", "createYellowCardEvent", userName,match,player);
             if (!answer.equals("ok")) {
                 ErrorAlertForCreateEvent(answer);
             } else {
@@ -287,14 +287,15 @@ public class eventsPageController {
         idNumOfMinute.setDisable(true);
         String numOfMinute = idNumOfMinute.getText();
          if(Pattern.matches("[0-9]+", numOfMinute)){
-             String answer = this.refereeApplication.createExtraTimeEvent(userName,match,numOfMinute);
+             //String answer = this.refereeApplication.createExtraTimeEvent(userName,match,numOfMinute);
+             String answer = ClientController.connectToServer("RefereeApplication", "createExtraTimeEvent", userName,match,numOfMinute);
+
              if(! answer.equals("ok")){
                  ErrorAlertForCreateEvent(answer);
              }
              else{
                  SuccessAlertForCreateEvent("ExtraTime Event was created!");
              }
-             //String ans = ClientController.connectToServer("RefereeApplication", "createExtraTimeEvent", userName,match,numOfMinute);
          }
          else{
              ErrorAlertForCreateEvent("Please insert a valid number of minutes");

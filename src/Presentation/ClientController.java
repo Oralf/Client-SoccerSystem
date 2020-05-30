@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ClientController {
     //TODO change server name!!!
-    private static final URI url= UriBuilder.fromUri("http://132.72.65.77:8080/ServerTry_war_exploded/rest").build();
+    private static final URI url= UriBuilder.fromUri("http://132.72.65.77:8080/soccerSystem_war_exploded/rest").build();
 
 
     public static String connectToServer(String appClassName, String funcName, String... parameters){
