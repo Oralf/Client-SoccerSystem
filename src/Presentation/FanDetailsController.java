@@ -1,7 +1,6 @@
 package Presentation;
 
-import Service.FanApplication;
-import Service.SystemOperationsApplication;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,8 +51,8 @@ public class FanDetailsController { //implements Initializable
 
 
 
-    private FanApplication fanApplication = new FanApplication();
-    private SystemOperationsApplication syOpApp =new SystemOperationsApplication();
+    //private FanApplication fanApplication = new FanApplication();
+  //  private SystemOperationsApplication syOpApp =new SystemOperationsApplication();
     private String userName; // userName; set!!!!!!!!!!!!!!!!!!!!!!!!
     private String role;
 
@@ -89,8 +88,8 @@ public class FanDetailsController { //implements Initializable
 
     @FXML
     private void showDetails() {
-        String fanDetailsStr = syOpApp.getPrivateDetails(userName);
-        //String fanDetailsStr = ClientController.connectToServer("SystemOperationsApplication", "getPrivateDetails", userName);
+        //String fanDetailsStr = syOpApp.getPrivateDetails(userName);
+        String fanDetailsStr = ClientController.connectToServer("SystemOperationsApplication", "getPrivateDetails", userName);
 
         List<String> fanDetails = Arrays.asList(fanDetailsStr.split(";"));
         //list : name, Password, PhoneNumber, Email, DateOfBirth
@@ -180,8 +179,8 @@ public class FanDetailsController { //implements Initializable
             if(newPassward.equals("******")){
                 newPassward=null;
             }
-            String massage= fanApplication.setFanDetails(userName,newName,newPassward,newPhonNum,newEmail);
-            //String massage = ClientController.connectToServer("FanApplication", "setFanDetails", userName,newName,newPassward,newPhonNum,newEmail);
+            //String massage= fanApplication.setFanDetails(userName,newName,newPassward,newPhonNum,newEmail);
+            String massage = ClientController.connectToServer("FanApplication", "setFanDetails", userName,newName,newPassward,newPhonNum,newEmail);
 
             if(massage.equals("ok")){
                 showDetails();
