@@ -1,8 +1,8 @@
 package Presentation;
 
-import Service.FanApplication;
-import Service.RefereeApplication;
-import Service.UserApplication;
+//import Service.FanApplication;
+//import Service.RefereeApplication;
+//import Service.UserApplication;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,9 +38,9 @@ public class RefereePageController extends HomePageController {
     public javafx.scene.control.Button idReportbtn;
 
     @FXML
-    private RefereeApplication refereeApplication = new RefereeApplication();
-    private FanApplication fanApplication= new FanApplication();
-    private UserApplication userApplication= new UserApplication();
+    //private RefereeApplication refereeApplication = new RefereeApplication();
+    //private FanApplication fanApplication= new FanApplication();
+    //private UserApplication userApplication= new UserApplication();
 
     private String userName;
     private String role;
@@ -52,7 +52,7 @@ public class RefereePageController extends HomePageController {
             return;
         }
         if (connectionOK && scheduler == null) {
-            scheduler = new CheckNotificationsTask(userName, fanApplication);
+            scheduler = new CheckNotificationsTask(userName);
             scheduler.setPeriod(Duration.seconds(10));
             scheduler.setOnSucceeded(
                     e -> {
@@ -96,8 +96,8 @@ public class RefereePageController extends HomePageController {
     @FXML
     public void addEventToMatch(ActionEvent actionEvent) throws IOException {
 
-        String match = refereeApplication.displayAllMatches(userName);
-        //String match = ClientController.connectToServer("RefereeApplication", "displayAllMatches", userName);
+        //String match = refereeApplication.displayAllMatches(userName);
+        String match = ClientController.connectToServer("RefereeApplication", "displayAllMatches", userName);
 
         if(! match.equals("")) {
             //display matches that still not take place
@@ -123,8 +123,8 @@ public class RefereePageController extends HomePageController {
     }
 
     public void createReport(ActionEvent actionEvent) throws IOException {
-        String matchesStr = refereeApplication.getAllMatches(userName);
-        //String match = ClientController.connectToServer("RefereeApplication", "getAllMatches", userName);
+        //String matchesStr = refereeApplication.getAllMatches(userName);
+        String matchesStr = ClientController.connectToServer("RefereeApplication", "getAllMatches", userName);
 
         List<String> matches = Arrays.asList(matchesStr.split(";"));
 
@@ -170,8 +170,8 @@ public class RefereePageController extends HomePageController {
 
     public void onLogOut(ActionEvent actionEvent) throws IOException {
         scheduler.cancel();
-        String ans= userApplication.logout(userName);
-        //String ans = ClientController.connectToServer("UserApplication", "logout", userName);
+        //String ans= userApplication.logout(userName);
+        String ans = ClientController.connectToServer("UserApplication", "logout", userName);
         if(ans.equals("success")){
             FXMLLoader loader=new FXMLLoader();
             loader.setLocation(getClass().getResource("Login.fxml"));

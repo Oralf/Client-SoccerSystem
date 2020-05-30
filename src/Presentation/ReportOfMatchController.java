@@ -1,6 +1,6 @@
 package Presentation;
 
-import Service.RefereeApplication;
+//import Service.RefereeApplication;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -34,7 +34,7 @@ public class ReportOfMatchController {
 
 
     @FXML
-    private RefereeApplication refereeApplication = new RefereeApplication();
+    //private RefereeApplication refereeApplication = new RefereeApplication();
 
     private String userName;
     private List<String> matches;
@@ -78,8 +78,8 @@ public class ReportOfMatchController {
             chooseFile.show();
         }
         else{
-            String reportStr = this.refereeApplication.createReportOfMatch(match,userName);
-            //String reportStr = ClientController.connectToServer("RefereeApplication", "createReportOfMatch", match, userName);
+            //String reportStr = this.refereeApplication.createReportOfMatch(match,userName);
+            String reportStr = ClientController.connectToServer("RefereeApplication", "createReportOfMatch", match, userName);
             //check for error
             if(reportStr.contains("error")){
                 Alert chooseFile = new Alert(Alert.AlertType.ERROR);

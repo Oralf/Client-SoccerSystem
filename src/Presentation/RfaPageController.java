@@ -1,7 +1,7 @@
 package Presentation;
 
-import Service.FanApplication;
-import Service.UserApplication;
+//import Service.FanApplication;
+//import Service.UserApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,8 +30,8 @@ public class RfaPageController extends HomePageController {
     public javafx.scene.control.Button definePolicyBtn;
 
     //delete later!!!!!!!!
-    private FanApplication fanApplication=new FanApplication();
-    private UserApplication userApplication= new UserApplication();
+    //private FanApplication fanApplication=new FanApplication();
+    //private UserApplication userApplication= new UserApplication();
 
 
 
@@ -99,14 +99,14 @@ public class RfaPageController extends HomePageController {
 
     public void onLogOut(ActionEvent actionEvent) throws IOException {
         scheduler.cancel();
-        String ans= userApplication.logout(userName);
-        //String ans = ClientController.connectToServer("UserApplication", "logout", userName);
+        //String ans= userApplication.logout(userName);
+        String ans = ClientController.connectToServer("UserApplication", "logout", userName);
         if(ans.equals("success")){
             FXMLLoader loader=new FXMLLoader();
             loader.setLocation(getClass().getResource("Login.fxml"));
             Parent root=loader.load();
 
-            Scene scene = new Scene(root, 700, 400);
+            Scene scene = new Scene(root);
 
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
             stageTheEventSourceNodeBelongs.setScene(scene);
@@ -128,7 +128,7 @@ public class RfaPageController extends HomePageController {
             return;
         }
         if (connectionOK && scheduler == null) {
-            scheduler = new CheckNotificationsTask(userName, fanApplication);
+            scheduler = new CheckNotificationsTask(userName);
             scheduler.setPeriod(Duration.seconds(10));
             scheduler.setOnSucceeded(
                     e -> {

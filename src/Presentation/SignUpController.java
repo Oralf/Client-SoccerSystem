@@ -1,8 +1,8 @@
 package Presentation;
 
 //import Domain.Main;
-import Domain.MainSystem;
-import Service.SystemOperationsApplication;
+//import Domain.MainSystem;
+//import Service.SystemOperationsApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -70,7 +70,7 @@ public class SignUpController {
     @FXML
     Label lbl_phoneError;
 
-    SystemOperationsApplication soc = new SystemOperationsApplication();
+    //SystemOperationsApplication soc = new SystemOperationsApplication();
 
     public void closeEvent(MouseEvent mouseEvent) {
         System.exit(0);
@@ -85,7 +85,7 @@ public class SignUpController {
     }
 
     public void signUpHandling(MouseEvent mouseEvent) {
-        MainSystem ms = MainSystem.getInstance();
+        //MainSystem ms = MainSystem.getInstance();
         boolean isValid = true;
         if (txt_name.getText().trim().contains(";")) {
             lbl_nameError.setText(" ; is not valid character");
@@ -197,8 +197,8 @@ public class SignUpController {
                 //change by or- need to send String object and not date
                 SimpleDateFormat birthDateFormat = new SimpleDateFormat("dd-MM-yyyy");
                 String dateStr= birthDateFormat.format(date);
-                String ans = soc.signUp(role, txt_name.getText(), txt_phoneNumber.getText(), txt_email.getText(), txt_userName.getText(), txt_password.getText(), dateStr,emailChoose);
-                //String ans = ClientController.connectToServer("SystemOperationsApplication", "signUp", role, txt_name.getText(), txt_phoneNumber.getText(), txt_email.getText(), txt_userName.getText(), txt_password.getText(), dateStr, sendByEmailstr);
+                //String ans = soc.signUp(role, txt_name.getText(), txt_phoneNumber.getText(), txt_email.getText(), txt_userName.getText(), txt_password.getText(), dateStr,emailChoose);
+                String ans = ClientController.connectToServer("SystemOperationsApplication", "signUp", role, txt_name.getText(), txt_phoneNumber.getText(), txt_email.getText(), txt_userName.getText(), txt_password.getText(), dateStr, emailChoose);
 
                 if(ans.contains("error")){//USER NAME ALREADY EXIST.
                     throw new Exception();
