@@ -92,7 +92,7 @@ public class ReportOfMatchController {
 
                 reportTable.getItems().addAll(report);
 
-                TableColumn<String,String> column1= new TableColumn<>("EventsAdapter");
+                TableColumn<String,String> column1= new TableColumn<>("Events in match");
                 column1.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
 
                 reportTable.getColumns().setAll(column1);

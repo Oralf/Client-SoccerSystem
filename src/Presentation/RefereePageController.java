@@ -132,7 +132,7 @@ public class RefereePageController extends HomePageController {
 
         List<String> matches = Arrays.asList(matchesStr.split(";"));
 
-        if(matches.size() > 0){
+        if(matches.size() > 1){
 
             FXMLLoader loader=new FXMLLoader();
             loader.setLocation(getClass().getResource("ReportOfMatch.fxml"));
