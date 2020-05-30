@@ -39,7 +39,6 @@ public class ClientController {
                     Alert chooseFile = new Alert(Alert.AlertType.ERROR);
                     chooseFile.setContentText("Connection problem ! Please try to connect later");
                     chooseFile.show();
-
                 });
             }
             else{
