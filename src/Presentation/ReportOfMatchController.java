@@ -89,8 +89,10 @@ public class ReportOfMatchController {
             }
             else{//else no problem
                 List<String> report = Arrays.asList(reportStr.split(";"));
+                LinkedList<String> list = new LinkedList<String>();
+                list.addAll(report);
 
-                reportTable.getItems().addAll(report);
+                reportTable.getItems().addAll(list);
 
                 TableColumn<String,String> column1= new TableColumn<>("Events in match");
                 column1.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
