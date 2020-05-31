@@ -55,7 +55,7 @@ public class LoginController{
                     //if (uc.haveUnreadNotifications(userRole, txt_userName.getText())) {
                     if(ClientController.connectToServer("UserApplication", "haveUnreadNotifications", userRole, txt_userName.getText()).equals("true")){
                             if (notFan) {
-                            message = message + ", and as" + userRole;
+                            message = message + ", and as " + userRole;
                         } else {
                             message = "You have unread notifications as " + userRole;
                         }
