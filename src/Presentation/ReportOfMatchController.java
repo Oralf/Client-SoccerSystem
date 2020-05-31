@@ -11,10 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -28,7 +25,8 @@ public class ReportOfMatchController {
 
     @FXML
     public ComboBox<String> idMatches;
-
+    @FXML
+    public Label lblScore;
     @FXML
     public TableView reportTable;
 
@@ -42,7 +40,7 @@ public class ReportOfMatchController {
     public void initPage(String userName, List<String> matches) {
         this.userName = userName;
         this.matches = matches;
-
+        lblScore.setVisible(false);
         reportTable.setVisible(false);
     }
 
@@ -88,14 +86,27 @@ public class ReportOfMatchController {
                 chooseFile.show();
             }
             else{//else no problem
-                List<String> report = Arrays.asList(reportStr.split(";"));
+                String matchScore = ClientController.connectToServer("RefereeApplication", "getMatchScore", match, userName);
+                if(matchScore.contains("Error")){
+                    Alert chooseFile = new Alert(Alert.AlertType.ERROR);
+                    chooseFile.setHeaderText("error");
+                    chooseFile.setContentText(matchScore);
+                    chooseFile.show();
+                }
+                else {
+                    lblScore.setVisible(true);
+                    lblScore.setText(matchScore);
+                    List<String> report = Arrays.asList(reportStr.split(";"));
+                    LinkedList<String> list = new LinkedList<String>();
+                    list.addAll(report);
 
-                reportTable.getItems().addAll(report);
+                    reportTable.getItems().addAll(list);
 
-                TableColumn<String,String> column1= new TableColumn<>("EventsAdapter");
-                column1.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+                    TableColumn<String, String> column1 = new TableColumn<>("Events in match");
+                    column1.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
 
-                reportTable.getColumns().setAll(column1);
+                    reportTable.getColumns().setAll(column1);
+                }
             }
         }
 

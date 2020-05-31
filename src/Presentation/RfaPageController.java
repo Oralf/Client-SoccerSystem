@@ -59,14 +59,6 @@ public class RfaPageController extends HomePageController {
         Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         stageTheEventSourceNodeBelongs.setScene(scene);
         stageTheEventSourceNodeBelongs.show();
-
-
-//        FXMLLoader loader = new FXMLLoader();
-//        Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-//        Parent root = (Parent) loader.load(getClass().getResource("DefinePolicy.fxml").openStream());
-//        stage.setScene(new Scene(root));
-//        stage.show();
-
     }
 
     @FXML

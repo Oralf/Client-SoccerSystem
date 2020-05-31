@@ -80,7 +80,7 @@ public class SignUpController {
         Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)mouseEvent.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene scene = new Scene(root, 700, 400);
-        scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
+        //scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
         stageTheEventSourceNodeBelongs.setScene(scene);
     }
 
@@ -207,7 +207,7 @@ public class SignUpController {
                 Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)mouseEvent.getSource()).getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
                 Scene scene = new Scene(root, 700, 400);
-                scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
+                //scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
                 stageTheEventSourceNodeBelongs.setScene(scene);
             }
             catch (Exception e){
@@ -251,7 +251,7 @@ public class SignUpController {
         DialogPane dialogPane = alert.getDialogPane();
 //        alert.setTitle("Warning");
         alert.setContentText(alertMessage);
-        dialogPane.getStylesheets().add(getClass().getResource("alert.css").toExternalForm());
+        //dialogPane.getStylesheets().add(getClass().getResource("alert.css").toExternalForm());
         dialogPane.getStyleClass().add("alert");
         alert.show();
 //        mazeDisplayer.requestFocus();
