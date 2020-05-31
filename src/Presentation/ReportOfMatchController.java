@@ -40,7 +40,7 @@ public class ReportOfMatchController {
     public void initPage(String userName, List<String> matches) {
         this.userName = userName;
         this.matches = matches;
-
+        lblScore.setVisible(false);
         reportTable.setVisible(false);
     }
 
@@ -94,6 +94,7 @@ public class ReportOfMatchController {
                     chooseFile.show();
                 }
                 else {
+                    lblScore.setVisible(true);
                     lblScore.setText(matchScore);
                     List<String> report = Arrays.asList(reportStr.split(";"));
                     LinkedList<String> list = new LinkedList<String>();
