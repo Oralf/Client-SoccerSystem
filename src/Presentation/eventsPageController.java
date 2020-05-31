@@ -175,7 +175,6 @@ public class eventsPageController {
                 SuccessAlertForCreateEvent("Goal Event was created!");
             }
         }
-
         clearAllComboBoxes();
     }
 
@@ -192,7 +191,6 @@ public class eventsPageController {
                 SuccessAlertForCreateEvent("Injury Event was created!");
             }
         }
-
         clearAllComboBoxes();
     }
 
